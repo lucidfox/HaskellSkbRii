@@ -7,11 +7,21 @@
 
 module Main where
 
+fizz :: Int -> String
+fizz n = if n `mod` 3 == 0 then "Fizz" else ""
+
+buzz :: Int -> String
+buzz n = if n `mod` 5 == 0 then "Buzz" else ""
+
+transform :: String -> String -> String
+transform s "" = s
+transform s t = t
+
 fizzBuzz :: Int -> String
-fizzBuzz = undefined
+fizzBuzz n = transform (show n) (fizz n ++ buzz n)
 
 main = do
-    let myFizzBuzzes = --put your solution here
+    let myFizzBuzzes = map fizzBuzz [1..100]
 
     fbs <- readFile "FizzBuzzes.txt"    
     if read fbs == myFizzBuzzes
