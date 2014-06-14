@@ -13,12 +13,12 @@ fizz n = if n `mod` 3 == 0 then "Fizz" else ""
 buzz :: Int -> String
 buzz n = if n `mod` 5 == 0 then "Buzz" else ""
 
-transform :: String -> String -> String
-transform s "" = s
-transform s t = t
+firstNonEmpty :: String -> String -> String
+firstNonEmpty "" second = second
+firstNonEmpty first second = first
 
 fizzBuzz :: Int -> String
-fizzBuzz n = transform (show n) (fizz n ++ buzz n)
+fizzBuzz n = firstNonEmpty (fizz n ++ buzz n) (show n)
 
 main = do
     let myFizzBuzzes = map fizzBuzz [1..100]
